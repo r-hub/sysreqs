@@ -3,7 +3,7 @@
 
 > Install SystemRequirements of Packages
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 [![Linux Build Status](https://travis-ci.org/r-hub/sysreqs.svg?branch=master)](https://travis-ci.org/r-hub/sysreqs)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-hub/sysreqs?svg=true)](https://ci.appveyor.com/project/r-hub/sysreqs)
 [![](http://www.r-pkg.org/badges/version/sysreqs)](http://www.r-pkg.org/pkg/sysreqs)
