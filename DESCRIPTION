@@ -1,0 +1,13 @@
+Package: sysreqs
+Title: Install SystemRequirements of Packages
+Version: 1.0.0
+Author: Gabor Csardi
+Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
+Description: Automatically download and install system requirements of R packages.
+License: MIT + file LICENSE
+LazyData: true
+URL: https://github.com/r-hub/sysreqs
+BugReports: https://github.com/r-hub/sysreqs/issues
+RoxygenNote: 5.0.1
+Suggests: 
+    testthat
