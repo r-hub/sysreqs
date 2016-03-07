@@ -11,3 +11,8 @@ BugReports: https://github.com/r-hub/sysreqs/issues
 RoxygenNote: 5.0.1
 Suggests: 
     testthat
+Imports:
+    description,
+    utils
+Remotes:
+    metacran/description
