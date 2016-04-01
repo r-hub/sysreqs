@@ -36,9 +36,10 @@ sysreqs <- function(desc, platform = current_platform()) {
     get_sysreqs(sysreqs_field, platform = platform)
   }
 
-
   deps <- dsc$get_deps()
-  all_deps <- get_cran_deps(deps$package)
+
+  ## We include the package itself, because it might have an override
+  all_deps <- get_cran_deps(c(dsc$get("Package"), deps$package))
 
   dep_sysreqs <- lapply(all_deps, get_cran_sysreqs, platform = platform)
 
