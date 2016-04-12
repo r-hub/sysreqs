@@ -9,7 +9,7 @@
 
 sysreq_commands <- function(desc, platform = current_platform()) {
 
-  pkgs <- paste(sysreqs(desc, platform), collapse = " ")
+  pkgs <- sysreqs(desc, platform)
 
   url <- make_url(
     sysreqs_platform_url,
@@ -18,5 +18,8 @@ sysreq_commands <- function(desc, platform = current_platform()) {
 
   cmd <- download_json(url)[["install-commands"]]
 
-  sub("${sysreqs}", pkgs, cmd, fixed = TRUE)
+  if (length(pkgs)) {
+    pkgs_str <- paste(pkgs, collapse = " ")
+    sub("${sysreqs}", pkgs_str, cmd, fixed = TRUE)
+  }
 }
