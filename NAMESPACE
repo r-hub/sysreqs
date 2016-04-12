@@ -2,5 +2,6 @@
 
 export(current_platform)
 export(detect_platform)
+export(sysreq_commands)
 export(sysreqs)
 importFrom(description,description)
