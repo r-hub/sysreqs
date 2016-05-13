@@ -24,7 +24,7 @@ get_cran_sysreqs <- function(package, platform = current_platform()) {
 #'   platform.
 #'
 #' @export
-#' @importFrom description description
+#' @importFrom desc description
 
 sysreqs <- function(desc, platform = current_platform()) {
   dsc <- description$new(desc)

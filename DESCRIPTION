@@ -12,7 +12,5 @@ RoxygenNote: 5.0.1
 Suggests: 
     testthat
 Imports:
-    description,
+    desc,
     utils
-Remotes:
-    metacran/description
