@@ -27,7 +27,7 @@ sysreq_commands <- function(desc, platform = current_platform()) {
     files <- gsub("^script: ", "", scripts)
     paste0(
       sprintf("bash <(curl -s %s/script/%s)", sysreqs_base_url, files),
-      collapse = "\n"
+      collapse = ";"
     )
   }
 
@@ -37,6 +37,6 @@ sysreq_commands <- function(desc, platform = current_platform()) {
   }
 
   if (length(script_inst) + length(pkg_inst) > 0) {
-    str_trim(paste(pkg_inst, script_inst, sep = "\n"))
+    str_trim(paste(pkg_inst, script_inst, sep = ";"))
   }
 }
