@@ -18,6 +18,8 @@ sysreq_commands <- function(desc, platform = current_platform()) {
 
   cmd <- download_json(url)[["install-commands"]]
 
+  pkgs <- unique(pkgs)
+
   scripts <- grep("^script: ", pkgs, value = TRUE)
   pkgs <- setdiff(pkgs, scripts)
 
@@ -30,7 +32,7 @@ sysreq_commands <- function(desc, platform = current_platform()) {
   }
 
   pkg_inst <- if (length(pkgs)) {
-    pkgs_str <- paste(unique(pkgs), collapse = " ")
+    pkgs_str <- paste(pkgs, collapse = " ")
     sub("${sysreqs}", pkgs_str, cmd, fixed = TRUE)
   }
 
