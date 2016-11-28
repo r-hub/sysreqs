@@ -10,6 +10,7 @@
 
 get_cran_sysreqs <- function(package, platform = current_platform()) {
 
+  package <- paste(package, collapse = ",")
   url <- make_url(sysreqs_cran_url, package = package, platform = platform)
 
   unlist(download_json(url))
@@ -47,9 +48,10 @@ sysreqs <- function(desc, platform = current_platform(), soft = TRUE) {
   ## We include the package itself, because it might have an override
   all_deps <- get_cran_deps(c(dsc$get("Package"), deps$package))
 
-  dep_sysreqs <- lapply(all_deps, get_cran_sysreqs, platform = platform)
+  ## Get all sysreqs at once
+  dep_sysreqs <- get_cran_sysreqs(all_deps, platform = platform)
 
-  c(own_sysreqs, do.call(c, dep_sysreqs)) %||% character()
+  c(own_sysreqs, dep_sysreqs) %||% character()
 }
 
 
