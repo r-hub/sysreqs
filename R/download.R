@@ -1,6 +1,7 @@
 
 download <- function(url, quiet = TRUE) {
 
+  "!DEBUG Downloading `url`"
   path <- tempfile()
 
   status <- utils::download.file(
