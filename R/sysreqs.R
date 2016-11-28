@@ -20,13 +20,14 @@ get_cran_sysreqs <- function(package, platform = current_platform()) {
 #'
 #' @param desc Path to a \code{DESCRIPTION} file.
 #' @param platform Platform string, defaults to the current platform.
+#' @param soft Whether to include soft dependencies.
 #' @return All system dependencies on the current or the specified
 #'   platform.
 #'
 #' @export
 #' @importFrom desc description
 
-sysreqs <- function(desc, platform = current_platform()) {
+sysreqs <- function(desc, platform = current_platform(), soft = TRUE) {
   dsc <- description$new(desc)
 
   sysreqs_field <- dsc$get("SystemRequirements")
@@ -37,6 +38,11 @@ sysreqs <- function(desc, platform = current_platform()) {
   }
 
   deps <- dsc$get_deps()
+
+  ## Remove soft dependencies if they are not wanted
+  if (!soft) {
+    deps <- deps[ deps$type %in% c("Depends", "Imports", "LinkingTo"),, drop = FALSE ]
+  }
 
   ## We include the package itself, because it might have an override
   all_deps <- get_cran_deps(c(dsc$get("Package"), deps$package))

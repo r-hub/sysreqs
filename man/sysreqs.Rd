@@ -4,14 +4,17 @@
 \name{sysreqs}
 \alias{sysreqs}
 \alias{sysreqs-package}
+\alias{sysreqs}
 \title{Install SystemRequirements of Packages}
 \usage{
-sysreqs(desc, platform = current_platform())
+sysreqs(desc, platform = current_platform(), soft = TRUE)
 }
 \arguments{
 \item{desc}{Path to a \code{DESCRIPTION} file.}
 
 \item{platform}{Platform string, defaults to the current platform.}
+
+\item{soft}{Whether to include soft dependencies.}
 }
 \value{
 All system dependencies on the current or the specified

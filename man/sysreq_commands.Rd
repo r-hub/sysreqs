@@ -4,12 +4,14 @@
 \alias{sysreq_commands}
 \title{Command(s) to install system requirements of a package, on a platform}
 \usage{
-sysreq_commands(desc, platform = current_platform())
+sysreq_commands(desc, platform = current_platform(), soft = TRUE)
 }
 \arguments{
 \item{desc}{Path to a \code{DESCRIPTION} file.}
 
 \item{platform}{Platform string, defaults to the current platform.}
+
+\item{soft}{Whether to include soft dependencies.}
 }
 \value{
 Character scalar, a shell command to run to install
