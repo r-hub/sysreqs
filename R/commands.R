@@ -39,5 +39,7 @@ sysreq_commands <- function(desc, platform = current_platform(),
 
   if (length(script_inst) + length(pkg_inst) > 0) {
     str_trim(paste(pkg_inst, script_inst, sep = "\n"))
+  } else {
+    ""
   }
 }
