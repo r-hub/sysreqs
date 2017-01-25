@@ -10,6 +10,8 @@
 
 get_cran_sysreqs <- function(package, platform = current_platform()) {
 
+  if (!length(package)) return(character())
+
   package <- paste(package, collapse = ",")
   url <- make_url(sysreqs_cran_url, package = package, platform = platform)
 
