@@ -1,6 +1,6 @@
 Package: sysreqs
 Title: Install SystemRequirements of Packages
-Version: 1.0.0
+Version: 1.0.1
 Author: Gabor Csardi
 Maintainer: Gabor Csardi <csardi.gabor@gmail.com>
 Description: Automatically download and install system requirements of R packages.
