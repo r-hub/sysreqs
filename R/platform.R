@@ -117,7 +117,7 @@ detect_r_version <- function() {
 
 which_r_version <- function(str) {
   url <- make_url(rversions_url, version = str)
-  download(url)[[1]]$version
+  download_json(url)[[1]]$version
 }
 
 my_r_version_string <- function(str) {
