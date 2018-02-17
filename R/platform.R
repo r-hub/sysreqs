@@ -132,7 +132,7 @@ detect_os <- function() {
 
   ostype <- os_type()
   sysname <- Sys.info()["sysname"]
-  if (ostype == "win") {
+  if (ostype == "windows") {
     "windows"
   } else if (sysname == "Darwin") {
     "osx"
