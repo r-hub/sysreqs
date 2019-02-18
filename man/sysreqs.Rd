@@ -4,7 +4,6 @@
 \name{sysreqs}
 \alias{sysreqs}
 \alias{sysreqs-package}
-\alias{sysreqs}
 \title{Install SystemRequirements of Packages}
 \usage{
 sysreqs(desc, platform = current_platform(), soft = TRUE)
@@ -22,7 +21,4 @@ All system dependencies on the current or the specified
 }
 \description{
 Automatically download and install system requirements of R packages.
-
-System requirements of a local package
 }
-

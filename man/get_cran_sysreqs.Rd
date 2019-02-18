@@ -7,7 +7,7 @@
 get_cran_sysreqs(package, platform = current_platform())
 }
 \arguments{
-\item{package}{\assert{is_package_name} Package name.}
+\item{package}{Package name.}
 
 \item{platform}{Platform string. Defaults to the current platform.}
 }
@@ -19,4 +19,3 @@ All system dependencies on the current or the specified
 Get the system requirements of a CRAN package
 }
 \keyword{internal}
-

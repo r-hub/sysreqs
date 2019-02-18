@@ -17,4 +17,3 @@ A character vector of package names and versions,
 Recursive (hard) dependencies of CRAN packages
 }
 \keyword{internal}
-

@@ -17,3 +17,12 @@ str_trim <- function(x) {
     perl = TRUE
   )
 }
+
+unq <- function(x) {
+  l <- nchar(x)
+  q <-
+    (substr(x, 1, 1) == '"' & substr(x, l, l) == '"') |
+    (substr(x, 1, 1) == "'" & substr(x, l, l) == "'")
+  if (any(q)) x[q] <- substr(x, 2, l - 1)
+  x
+}

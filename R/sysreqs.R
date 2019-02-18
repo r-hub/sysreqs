@@ -1,7 +1,7 @@
 
 #' Get the system requirements of a CRAN package
 #'
-#' @param package \assert{is_package_name} Package name.
+#' @param package Package name.
 #' @param platform Platform string. Defaults to the current platform.
 #' @return All system dependencies on the current or the specified
 #'   platform.
@@ -56,6 +56,7 @@ sysreqs <- function(desc, platform = current_platform(), soft = TRUE) {
   c(own_sysreqs, dep_sysreqs) %||% character()
 }
 
+#'@importFrom utils URLencode
 
 get_sysreqs <- function(query, platform = current_platform()) {
 

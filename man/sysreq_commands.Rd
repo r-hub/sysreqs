@@ -20,4 +20,3 @@ Character scalar, a shell command to run to install
 \description{
 Command(s) to install system requirements of a package, on a platform
 }
-
