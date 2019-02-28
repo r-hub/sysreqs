@@ -17,7 +17,7 @@ sysreqs(desc, platform = current_platform(), soft = TRUE)
 }
 \value{
 All system dependencies on the current or the specified
-  platform.
+platform.
 }
 \description{
 Automatically download and install system requirements of R packages.

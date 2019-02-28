@@ -11,7 +11,7 @@ get_cran_deps(packages)
 }
 \value{
 A character vector of package names and versions,
-  separated by a single dash.
+separated by a single dash.
 }
 \description{
 Recursive (hard) dependencies of CRAN packages

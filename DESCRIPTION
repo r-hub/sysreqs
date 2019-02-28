@@ -16,3 +16,4 @@ Imports:
     desc,
     utils
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)

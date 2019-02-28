@@ -15,67 +15,55 @@ Detect the platform R is running on.
 \section{Linux platforms}{
 
 
-Linux platforms look like this:
-```
-<r-version>-linux-<arch>-<distribution>-<compiler>
-```
+Linux platforms look like this:\preformatted{<r-version>-linux-<arch>-<distribution>-<compiler>
+}
 
-`r-version` can be a tag: `r-devel`, `r-release` or `r-oldrel`. It
+\code{r-version} can be a tag: \code{r-devel}, \code{r-release} or \code{r-oldrel}. It
 may also be a version number.
 
-If `<distribution>` and `<compiler>` are missing, then `debian` and
-`gcc` are assumed. If the compiler is missing, `gcc` is assumed.
+If \code{<distribution>} and \code{<compiler>} are missing, then \code{debian} and
+\code{gcc} are assumed. If the compiler is missing, \code{gcc} is assumed.
 
-If `distribution` is `debian` that means Debian testing. If it is
-`fedora`, the CRAN Fedora version is assumed, see at
-<https://cran.r-project.org/web/checks/check_flavors.html>.
+If \code{distribution} is \code{debian} that means Debian testing. If it is
+\code{fedora}, the CRAN Fedora version is assumed, see at
+\url{https://cran.r-project.org/web/checks/check_flavors.html}.
 
-CRAN Linux platforms:
-```
-r-devel-linux-x86_64-debian-clang
+CRAN Linux platforms:\preformatted{r-devel-linux-x86_64-debian-clang
 r-devel-linux-x86_64-debian-gcc
 r-devel-linux-x86_64-fedora-clang
 r-devel-linux-x86_64-fedora-gcc
 r-release-linux-x86_64
 r-patched-linux-x86_64
-```
+}
 
-Other examples:
-```
-r-devel-linux-arm64-debian:9-gcc
+Other examples:\preformatted{r-devel-linux-arm64-debian:9-gcc
 r-release-linux-x86_64-ubuntu:14.04
 r-3.5.2-linux-x86_64-fedora:28
-```
+}
 }
 
 \section{Windows platforms}{
 
 
 Windows platforms are simpler, since binary compatibility is better
-on Windows:
-```
-<r-version>-windows-<archs>-<rtools-version>
-```
+on Windows:\preformatted{<r-version>-windows-<archs>-<rtools-version>
+}
 
-If `rtools-version` is missing, the default for the given R version
+If \code{rtools-version} is missing, the default for the given R version
 is assumed.
 
-CRAN Windows platforms:
-```
-r-devel-windows-ix86+x86_64
+CRAN Windows platforms:\preformatted{r-devel-windows-ix86+x86_64
 r-release-windows-ix86+x86_64
 r-oldrel-windows-ix86+x86_64
-```
+}
 }
 
 \section{macOS platforms}{
+\preformatted{<r-version>-osx-x86_64-<compiler>
+}
 
-
-```
-<r-version>-osx-x86_64-<compiler>
-```
-`compiler` can be `factory` or `cran`. If missing, `cran` is assumed.
-`factory` is the default system compiler. `cran` is the compiler
+\code{compiler} can be \code{factory} or \code{cran}. If missing, \code{cran} is assumed.
+\code{factory} is the default system compiler. \code{cran} is the compiler
 suggested by CRAN.
 
 r-release-osx-x86_64
@@ -85,12 +73,10 @@ r-devel-osx-x86_64
 \section{Other platforms}{
 
 
-Other supported platforms:
-```
-<r-version>-solaris-x86-<compiler>
-```
+Other supported platforms:\preformatted{<r-version>-solaris-x86-<compiler>
+}
 
-If `compiler` is missing, Oracle Developer Studio 12.6 is assumed.
-Otherwise it can be `gcc`.
+If \code{compiler} is missing, Oracle Developer Studio 12.6 is assumed.
+Otherwise it can be \code{gcc}.
 }
 

@@ -13,7 +13,7 @@ get_cran_sysreqs(package, platform = current_platform())
 }
 \value{
 All system dependencies on the current or the specified
-  platform.
+platform.
 }
 \description{
 Get the system requirements of a CRAN package

@@ -15,7 +15,7 @@ sysreq_commands(desc, platform = current_platform(), soft = TRUE)
 }
 \value{
 Character scalar, a shell command to run to install
-  the system requirements on a given platform.
+the system requirements on a given platform.
 }
 \description{
 Command(s) to install system requirements of a package, on a platform
