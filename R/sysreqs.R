@@ -1,24 +1,4 @@
 
-#' Get the system requirements of a CRAN package
-#'
-#' @param package Package name.
-#' @param platform Platform string. Defaults to the current platform.
-#' @return All system dependencies on the current or the specified
-#'   platform.
-#'
-#' @keywords internal
-
-get_cran_sysreqs <- function(package, platform = current_platform()) {
-
-  if (!length(package)) return(character())
-
-  package <- paste(package, collapse = ",")
-  url <- make_url(sysreqs_cran_url, package = package, platform = platform)
-
-  unlist(download_json(url))
-}
-
-
 #' System requirements of a local package
 #'
 #' @param desc Path to a \code{DESCRIPTION} file.
@@ -66,6 +46,25 @@ get_sysreqs <- function(query, platform = current_platform()) {
     query = encode_slash(URLencode(query)),
     platform = platform
   )
+
+  unlist(download_json(url))
+}
+
+#' Get the system requirements of a CRAN package
+#'
+#' @param package Package name.
+#' @param platform Platform string. Defaults to the current platform.
+#' @return All system dependencies on the current or the specified
+#'   platform.
+#'
+#' @keywords internal
+
+get_cran_sysreqs <- function(package, platform = current_platform()) {
+
+  if (!length(package)) return(character())
+
+  package <- paste(package, collapse = ",")
+  url <- make_url(sysreqs_cran_url, package = package, platform = platform)
 
   unlist(download_json(url))
 }
