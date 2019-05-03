@@ -1,7 +1,7 @@
 
 #' Get the system requirements of a CRAN package
 #'
-#' @param package \assert{is_package_name} Package name.
+#' @param package Package name.
 #' @param platform Platform string. Defaults to the current platform.
 #' @return All system dependencies on the current or the specified
 #'   platform.
