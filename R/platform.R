@@ -8,8 +8,8 @@
 #' <r-version>-linux-<arch>-<distribution>-<compiler>
 #' ```
 #'
-#' `r-version` can be a tag: `r-devel`, `r-release` or `r-oldrel`. It
-#' may also be a version number.
+#' The `<r-version>` part is optional and it is currently ignored for
+#' matching platforms. It is allowed because CRAN platform names have it.
 #'
 #' If `<distribution>` and `<compiler>` are missing, then `debian` and
 #' `gcc` are assumed. If the compiler is missing, `gcc` is assumed.
@@ -30,8 +30,8 @@
 #'
 #' Other examples:
 #' ```
-#' r-devel-linux-arm64-debian:9-gcc
-#' r-release-linux-x86_64-ubuntu:14.04
+#' linux-arm64-debian:9-gcc
+#' linux-x86_64-ubuntu:14.04
 #' r-3.5.2-linux-x86_64-fedora:28
 #' ```
 #'
@@ -42,6 +42,8 @@
 #' ```
 #' <r-version>-windows-<archs>-<rtools-version>
 #' ```
+#'
+#' Again, `<r-version>` is optional and it is ignored.
 #'
 #' If `rtools-version` is missing, the default for the given R version
 #' is assumed.
@@ -58,12 +60,18 @@
 #' ```
 #' <r-version>-osx-x86_64-<compiler>
 #' ```
+#'
+#' Again, `<r-version>` is optional and it is ignored.
+#'
 #' `compiler` can be `factory` or `cran`. If missing, `cran` is assumed.
 #' `factory` is the default system compiler. `cran` is the compiler
 #' suggested by CRAN.
 #'
+#' CRAN macOS platforms:
+#' ```
 #' r-release-osx-x86_64
 #' r-devel-osx-x86_64
+#' ```
 #'
 #' @section Other platforms:
 #'
@@ -72,12 +80,13 @@
 #' <r-version>-solaris-x86-<compiler>
 #' ```
 #'
+#' Again, `<r-version>` is optional and it is ignored.
+#'
 #' If `compiler` is missing, Oracle Developer Studio 12.6 is assumed.
 #' Otherwise it can be `gcc`.
 #'
+#' @return Character scalar, platform string.
 #'
-#' @return Character scalar, platform string. 
-#' 
 #' @export
 
 current_platform <- function() {
@@ -91,64 +100,38 @@ current_platform <- function() {
 
 detect_platform <- function() {
 
-  switch(detect_os(),
+  rver <- paste0("r-", my_r_version())
+
+  plat <- switch(detect_os(),
     "windows" = detect_platform_windows(),
     "osx"     = detect_platform_osx(),
     "linux"   = detect_platform_linux(),
     "solaris" = detect_platform_solaris(),
     "unknown"
   )
+
+  paste(sep = "-", rver, plat)
 }
 
 detect_platform_windows <- function() {
-  rver <- detect_r_version()
-  paste(sep = "-", rver, "windows", "ix86+x86_64")
+  paste(sep = "-", "windows", "ix86+x86_64")
 }
 
 detect_platform_osx <- function() {
-  rver <- detect_r_version()
   ## TODO: compiler?
-  paste(sep = "-", rver, "osx", "x64_86")
+  paste(sep = "-", "osx", "x64_86")
 }
 
 detect_platform_linux <- function() {
-  rver <- detect_r_version()
   arch <- detect_linux_arch()
   dist <- detect_linux_distrib()
   comp <- detect_linux_compiler()
-  paste(sep = "-", rver, "linux", arch, dist, comp)
+  paste(sep = "-", "linux", arch, dist, comp)
 }
 
 detect_platform_solaris <-  function() {
-  rver <- detect_r_version()
   ## TODO: compiler?
-  paste(sep = "-",  rver, "solaris", "x86")
-}
-
-detect_r_version <- function() {
-
-  release <- which_r_version("r-release")
-  oldrel <- which_r_version("r-oldrel")
-  myself <- my_r_version()
-
-  if (grepl("Under development", R.version$status)) {
-    "r-devel"
-  } else if (grepl("Patched", R.version$status) && myself == release) {
-    "r-patched"
-  } else if (R.version$status == "RC") {
-    paste0("r-", myself)
-  } else if (R.version$status == "" && myself == release) {
-    "r-release"
-  } else if (R.version$status == "" && myself == oldrel) {
-    "r-oldrel"
-  } else {
-    paste0("r-", myself)
-  }
-}
-
-which_r_version <- function(str) {
-  url <- make_url(rversions_url, version = str)
-  download_json(url)[[1]]$version
+  paste(sep = "-", "solaris", "x86")
 }
 
 my_r_version <- function() {
@@ -184,11 +167,6 @@ detect_linux_compiler <- function() {
 }
 
 detect_linux_distrib <- function() {
-  if (!file.exists("/etc/os-release")) return("unknown")
-  lines <- readLines("/etc/os-release")
-  dist <- sub("^ID=", "", grep("^ID=", lines, value = TRUE)[1])
-  vers <- sub("^VERSION_ID=", "",
-              grep("^VERSION_ID=", lines, value = TRUE)[1])
-  if (is.na(dist) || is.na(vers)) return ("unknown")
-  paste0(unq(dist), ":", unq(vers))
+  linux_sh <- system.file("scripts", "linux.sh", package = "sysreqs")
+  str_trim(processx::run(linux_sh)$stdout)
 }
