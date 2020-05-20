@@ -34,7 +34,7 @@ download_json <- function(url, quiet = TRUE) {
 
   path <- download(url, quiet = quiet)
 
-  content <- fromJSONFile(path)
+  content <- jsonlite::fromJSON(path)
 
   unlink(path)
 
