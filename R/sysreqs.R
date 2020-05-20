@@ -62,7 +62,7 @@ get_sysreqs <- function(query, platform = current_platform()) {
   query <- as.character(query)[1]
   url <- make_url(
     sysreqs_url,
-    query = encode_slash(URLencode(query)),
+    query = encode_slash(utils::URLencode(query)),
     platform = platform
   )
 

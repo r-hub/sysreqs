@@ -24,7 +24,7 @@ get_cran_deps <- function(packages) {
 
   # Get rid of base packages
   deps <- unique(c(packages, unlist(deps, use.names = FALSE)))
-  base <- rownames(installed.packages(priority = "base"))
+  base <- rownames(utils::installed.packages(priority = "base"))
   deps <- setdiff(deps, base)
 
   deps
