@@ -11,12 +11,21 @@ get_cran_deps <- function(packages) {
 
   if (length(packages) == 0) {
     character()
-
-  } else {
-    url <- make_url(crandeps_url, packages = paste(packages, collapse = ","))
-    pkgs <- names(download_json(url))
-
-    ## The base packages have no dash
-    grep("-", pkgs, fixed = TRUE, value = TRUE)
   }
+
+  db <- utils::available.packages()
+
+  deps <- tools::package_dependencies(
+    packages,
+    recursive = TRUE,
+    which = c("Depends", "Imports", "LinkingTo"),
+    db = db
+  )
+
+  # Get rid of base packages
+  deps <- unique(c(packages, unlist(deps, use.names = FALSE)))
+  base <- rownames(installed.packages(priority = "base"))
+  deps <- setdiff(deps, base)
+
+  deps
 }
