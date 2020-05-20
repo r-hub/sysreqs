@@ -53,7 +53,7 @@ sysreqs <- function(desc, platform = current_platform(), soft = TRUE) {
   ## Get all sysreqs at once
   dep_sysreqs <- get_cran_sysreqs(all_deps, platform = platform)
 
-  c(own_sysreqs, dep_sysreqs) %||% character()
+  unique(c(own_sysreqs, dep_sysreqs) %||% character())
 }
 
 
