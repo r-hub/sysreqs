@@ -12,6 +12,11 @@ sysreq_commands <- function(desc, platform = current_platform(),
 
   pkgs <- sysreqs(desc, platform, soft = soft)
 
+  sysreq_commands_pkgs(pkgs, platform = platform)
+}
+
+
+sysreq_commands_pkgs <- function(pkgs, platform = current_platform()) {
   url <- make_url(
     sysreqs_platform_url,
     platform = platform
